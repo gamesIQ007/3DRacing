@@ -1,79 +1,61 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Racing
 {
+    [RequireComponent(typeof(CarChassis))]
+
     /// <summary>
-    /// Класс автомобиля
+    /// Информационная модель автомобиля.
     /// </summary>
     public class Car : MonoBehaviour
     {
         /// <summary>
-        /// Коллайдеры колёс
+        /// Максимальный крутящий момент
         /// </summary>
-        [SerializeField] private WheelCollider[] wheelColliders;
-    
-        /// <summary>
-        /// Меши колёс
-        /// </summary>
-        [SerializeField] private Transform[] wheelMeshs;
+        [SerializeField] private float MaxMotorTorque;
 
         /// <summary>
-        /// Крутящий момент
+        /// Максимальный угол поворота
         /// </summary>
-        [SerializeField] private float motorTorque;
+        [SerializeField] private float MaxSteerAngle;
 
         /// <summary>
-        /// Торможение
+        /// Максимальное торможение
         /// </summary>
-        [SerializeField] private float brakeTorque;
+        [SerializeField] private float MaxBreakTorque;
+
+        //DEBUG
 
         /// <summary>
-        /// Угол поворота
+        /// Контрол педали газа
         /// </summary>
-        [SerializeField] private float steerAngle;
+        public float ThrottleControl;
 
         /// <summary>
-        /// Вектор управления движением
+        /// Контрол поворота
         /// </summary>
-        private Vector2 moveInputVector;
+        public float SteerControl;
 
         /// <summary>
-        /// Торможение
+        /// Контрол торможения
         /// </summary>
-        private float moveBreak;
+        public float BrakeControl;
+
+        /// <summary>
+        /// Шасси
+        /// </summary>
+        private CarChassis chassis;
+
+        private void Start()
+        {
+            chassis = GetComponent<CarChassis>();
+        }
 
         private void Update()
         {
-            for (int i = 0; i < wheelColliders.Length; i++)
-            {
-                wheelColliders[i].motorTorque = moveInputVector.y * motorTorque;
-                wheelColliders[i].brakeTorque = moveBreak * brakeTorque;
-            }
-
-            wheelColliders[0].steerAngle = moveInputVector.x * steerAngle;
-            wheelColliders[1].steerAngle = moveInputVector.x * steerAngle;
-
-            for (int i = 0; i < wheelColliders.Length; i++)
-            {
-                Vector3 position;
-                Quaternion rotation;
-
-                wheelColliders[i].GetWorldPose(out position, out rotation);
-
-                wheelMeshs[i].position = position;
-                wheelMeshs[i].rotation = rotation;
-            }
-        }
-
-        public void OnMove(InputValue input)
-        {
-            moveInputVector = input.Get<Vector2>();
-        }
-
-        public void OnBreak(InputValue input)
-        {
-            moveBreak = input.Get<float>();
+            chassis.MotorTorque = MaxMotorTorque * ThrottleControl;
+            chassis.SteerAngle = MaxSteerAngle * SteerControl;
+            chassis.BrakeTorque = MaxBreakTorque * BrakeControl;
         }
     }
 }
