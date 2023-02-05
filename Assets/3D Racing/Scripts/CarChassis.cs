@@ -84,6 +84,31 @@ namespace Racing
         }
 
         /// <summary>
+        /// Получаем среднее количество оборотов в минуту со всех колём
+        /// </summary>
+        /// <returns>Среднее количество оборотов</returns>
+        public float GetAverageRpm()
+        {
+            float sum = 0;
+
+            for (int i = 0; i < wheelAxles.Length; i++)
+            {
+                sum += wheelAxles[i].GetAverageRpm();
+            }
+
+            return sum / wheelAxles.Length;
+        }
+
+        /// <summary>
+        /// Получаем скорость колеса
+        /// </summary>
+        /// <returns>Скорость колеса</returns>
+        public float GetWheelSpeed()
+        {
+            return GetAverageRpm() * wheelAxles[0].GetRadius() * 2 * 0.1885f;
+        }
+
+        /// <summary>
         /// Обновление колёсных осей
         /// </summary>
         private void UpdateWheelAxles()

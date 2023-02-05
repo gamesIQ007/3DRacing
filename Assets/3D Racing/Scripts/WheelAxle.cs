@@ -89,6 +89,8 @@ namespace Racing
             SyncMeshTransform();
         }
 
+        #region Public
+
         /// <summary>
         /// Применить угол поворота
         /// </summary>
@@ -139,6 +141,28 @@ namespace Racing
             leftWheelCollider.brakeTorque = brakeTorque;
             rightWheelCollider.brakeTorque = brakeTorque;
         }
+
+        /// <summary>
+        /// Получаем среднее количество оборотов в минуту
+        /// </summary>
+        /// <returns>Количество оборотов в минуту</returns>
+        public float GetAverageRpm()
+        {
+            return (leftWheelCollider.rpm + rightWheelCollider.rpm) * 0.5f;
+        }
+
+        /// <summary>
+        /// Получаем радиус колеса
+        /// </summary>
+        /// <returns>Радиус колеса</returns>
+        public float GetRadius()
+        {
+            return leftWheelCollider.radius;
+        }
+
+        #endregion
+
+        #region Private
 
         /// <summary>
         /// Синхронизация колёс с трансформом
@@ -246,5 +270,7 @@ namespace Racing
             leftWheelCollider.GetGroundHit(out leftWheelHit);
             rightWheelCollider.GetGroundHit(out rightWheelHit);
         }
+
+        #endregion
     }
 }

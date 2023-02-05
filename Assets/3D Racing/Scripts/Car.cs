@@ -38,6 +38,13 @@ namespace Racing
         /// </summary>
         public float LinearVelocity => chassis.LinearVelocity;
 
+        /// <summary>
+        /// Скорость колеса
+        /// </summary>
+        public float WheelSpeed => chassis.GetWheelSpeed();
+
+        public int MaxSpeed => maxSpeed;
+
         //DEBUG
 
         [SerializeField] private float linearVelocity;

@@ -14,30 +14,100 @@ namespace Racing
         [SerializeField] private Car car;
 
         /// <summary>
+        /// Кривая торможения
+        /// </summary>
+        [SerializeField] private AnimationCurve brakeCurve;
+
+        /// <summary>
+        /// Сила автоматического торможения
+        /// </summary>
+        [SerializeField] [Range(0.0f, 1.0f)] private float autoBrakeStrenght = 0.5f;
+
+        /// <summary>
+        /// Кривая поворота
+        /// </summary>
+        [SerializeField] private AnimationCurve steerCurve;
+
+        /// <summary>
+        /// Скорость колёс
+        /// </summary>
+        private float wheelSpeed;
+        /// <summary>
+        /// Вертикальная ось. Вперёд/назад
+        /// </summary>
+        private float verticalAxis;
+        /// <summary>
+        /// Горизонтальная ось. Влево/вправо.
+        /// </summary>
+        private float horizontalAxis;
+        /// <summary>
+        /// Ось ручника
+        /// </summary>
+        private float handbrakeAxis;
+
+        /// <summary>
         /// Вектор управления движением
         /// </summary>
         private Vector2 moveInputVector;
 
-        /// <summary>
-        /// Торможение
-        /// </summary>
-        private float moveBrake;
-
         private void Update()
         {
-            car.ThrottleControl = moveInputVector.y;
-            car.SteerControl = moveInputVector.x;
-            car.BrakeControl = moveBrake;
+            wheelSpeed = car.WheelSpeed;
+
+            UpdateThrottleAndBrake();
+            UpdateSteer();
+
+            UpdateAutoBrake();
+        }
+
+        /// <summary>
+        /// Обновление ускорения и торможения
+        /// </summary>
+        private void UpdateThrottleAndBrake()
+        {
+            if (Mathf.Sign(verticalAxis) == Mathf.Sign(wheelSpeed) || Mathf.Abs(wheelSpeed) < 0.5f)
+            {
+                car.ThrottleControl = verticalAxis;
+                car.BrakeControl = 0;
+            }
+            else
+            {
+                car.ThrottleControl = 0;
+                car.BrakeControl = brakeCurve.Evaluate(wheelSpeed / car.MaxSpeed);
+            }
+
+            //car.BrakeControl = handbrakeAxis;
+        }
+
+        /// <summary>
+        /// Обновление поворота
+        /// </summary>
+        private void UpdateSteer()
+        {
+            car.SteerControl = steerCurve.Evaluate(wheelSpeed / car.MaxSpeed) * horizontalAxis;
+        }
+
+        /// <summary>
+        /// Автоматическое торможение
+        /// </summary>
+        private void UpdateAutoBrake()
+        {
+            if (verticalAxis == 0)
+            {
+                car.BrakeControl = brakeCurve.Evaluate(wheelSpeed / car.MaxSpeed) * autoBrakeStrenght;
+            }
         }
 
         public void OnMove(InputValue input)
         {
             moveInputVector = input.Get<Vector2>();
+            verticalAxis = moveInputVector.y;
+            horizontalAxis = moveInputVector.x;
         }
 
         public void OnBreak(InputValue input)
         {
-            moveBrake = input.Get<float>();
+            handbrakeAxis = input.Get<float>();
         }
     }
 }
