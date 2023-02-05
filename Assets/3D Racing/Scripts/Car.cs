@@ -9,10 +9,6 @@ namespace Racing
     /// </summary>
     public class Car : MonoBehaviour
     {
-        /// <summary>
-        /// Максимальный крутящий момент
-        /// </summary>
-        [SerializeField] private float MaxMotorTorque;
 
         /// <summary>
         /// Максимальный угол поворота
@@ -24,7 +20,27 @@ namespace Racing
         /// </summary>
         [SerializeField] private float MaxBreakTorque;
 
+        /// <summary>
+        /// Кривая крутящего момента двигателя
+        /// </summary>
+        [SerializeField] private AnimationCurve engineTorqueCurve;
+        /// <summary>
+        /// Максимальный крутящий момент
+        /// </summary>
+        [SerializeField] private float MaxMotorTorque;
+        /// <summary>
+        /// Максимальная скорость
+        /// </summary>
+        [SerializeField] private int maxSpeed;
+
+        /// <summary>
+        /// Линейная скорость
+        /// </summary>
+        public float LinearVelocity => chassis.LinearVelocity;
+
         //DEBUG
+
+        [SerializeField] private float linearVelocity;
 
         /// <summary>
         /// Контрол педали газа
@@ -53,7 +69,17 @@ namespace Racing
 
         private void Update()
         {
-            chassis.MotorTorque = MaxMotorTorque * ThrottleControl;
+            linearVelocity = LinearVelocity;
+
+            // Крутящий момент двигателя
+            float engineTorque = engineTorqueCurve.Evaluate(LinearVelocity / maxSpeed) * MaxMotorTorque;
+
+            if (LinearVelocity >= maxSpeed)
+            {
+                engineTorque = 0;
+            }
+
+            chassis.MotorTorque = engineTorque * ThrottleControl;
             chassis.SteerAngle = MaxSteerAngle * SteerControl;
             chassis.BrakeTorque = MaxBreakTorque * BrakeControl;
         }
