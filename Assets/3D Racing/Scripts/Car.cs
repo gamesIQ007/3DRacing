@@ -20,6 +20,7 @@ namespace Racing
         /// </summary>
         [SerializeField] private float MaxBreakTorque;
 
+        [Header("Engine")]
         /// <summary>
         /// Кривая крутящего момента двигателя
         /// </summary>
@@ -27,7 +28,58 @@ namespace Racing
         /// <summary>
         /// Максимальный крутящий момент
         /// </summary>
-        [SerializeField] private float MaxMotorTorque;
+        [SerializeField] private float engineMaxTorque;
+        //DEBUG
+        /// <summary>
+        /// Текущий крутящий момент
+        /// </summary>
+        [SerializeField] private float engineTorque;
+        //DEBUG
+        /// <summary>
+        /// Текущие обороты двигателя
+        /// </summary>
+        [SerializeField] private float engineRpm;
+        /// <summary>
+        /// Минимальные обороты двигателя
+        /// </summary>
+        [SerializeField] private float engineMinRpm;
+        /// <summary>
+        /// Максимальные обороты двигателя
+        /// </summary>
+        [SerializeField] private float engineMaxRpm;
+        
+        [Header("Gearbox")]
+        /// <summary>
+        /// Передачи
+        /// </summary>
+        [SerializeField] private float[] gears;
+        /// <summary>
+        /// Финальная передача дифференциала (на что домножается ближе к колесу)
+        /// </summary>
+        [SerializeField] private float finalDriveRatio;
+
+        //DEBUG
+        /// <summary>
+        /// Выбранная передача
+        /// </summary>
+        [SerializeField] private float selectedGear;
+        /// <summary>
+        /// Индекс выбранной передачи
+        /// </summary>
+        [SerializeField] private int selectedGearIndex;
+        /// <summary>
+        /// Передача заднего хода
+        /// </summary>
+        [SerializeField] private float rearGear;
+        /// <summary>
+        /// Обороты, при которых нужно переключать передачу вверх
+        /// </summary>
+        [SerializeField] private float upShiftEngineRpm;
+        /// <summary>
+        /// Обороты, при которых нужно переключать передачу вниз
+        /// </summary>
+        [SerializeField] private float downShiftEngineRpm;
+
         /// <summary>
         /// Максимальная скорость
         /// </summary>
@@ -78,8 +130,8 @@ namespace Racing
         {
             linearVelocity = LinearVelocity;
 
-            // Крутящий момент двигателя
-            float engineTorque = engineTorqueCurve.Evaluate(LinearVelocity / maxSpeed) * MaxMotorTorque;
+            UpdateEngineTorque();
+            AutoGearShift();
 
             if (LinearVelocity >= maxSpeed)
             {
@@ -90,5 +142,89 @@ namespace Racing
             chassis.SteerAngle = MaxSteerAngle * SteerControl;
             chassis.BrakeTorque = MaxBreakTorque * BrakeControl;
         }
+
+        /// <summary>
+        /// Обновление крутящего момента двигателя
+        /// </summary>
+        private void UpdateEngineTorque()
+        {
+            engineRpm = engineMinRpm + Mathf.Abs(chassis.GetAverageRpm() * selectedGear * finalDriveRatio);
+            engineRpm = Mathf.Clamp(engineRpm, engineMinRpm, engineMaxRpm);
+
+            engineTorque = engineTorqueCurve.Evaluate(engineRpm / engineMaxRpm) * engineMaxTorque * finalDriveRatio * Mathf.Sign(selectedGear) * gears[0];
+        }
+
+        #region Gearbox
+
+        /// <summary>
+        /// Повысить передачу
+        /// </summary>
+        public void UpGear()
+        {
+            ShiftGear(selectedGearIndex + 1);
+        }
+
+        /// <summary>
+        /// Понизить передачу
+        /// </summary>
+        public void DownGear()
+        {
+            ShiftGear(selectedGearIndex - 1);
+        }
+
+        /// <summary>
+        /// Включить заднюю передачу
+        /// </summary>
+        public void ShiftToReverseGear()
+        {
+            selectedGear = rearGear;
+        }
+
+        /// <summary>
+        /// Включить первую передачу
+        /// </summary>
+        public void ShiftToFirstGear()
+        {
+            ShiftGear(0);
+        }
+
+        /// <summary>
+        /// Включить нейтральную передачу
+        /// </summary>
+        public void ShiftToNeutral()
+        {
+            selectedGear = 0;
+        }
+
+        /// <summary>
+        /// Переключить передачу
+        /// </summary>
+        /// <param name="gearIndex">Индекс передачи</param>
+        private void ShiftGear(int gearIndex)
+        {
+            gearIndex = Mathf.Clamp(gearIndex, 0, gears.Length - 1);
+            selectedGear = gears[gearIndex];
+            selectedGearIndex = gearIndex;
+        }
+
+        /// <summary>
+        /// Автоматическое переключение передач
+        /// </summary>
+        private void AutoGearShift()
+        {
+            if (selectedGear < 0) return;
+
+            if (engineRpm >= upShiftEngineRpm)
+            {
+                UpGear();
+            }
+
+            if (engineRpm < downShiftEngineRpm)
+            {
+                DownGear();
+            }
+        }
+
+        #endregion
     }
 }

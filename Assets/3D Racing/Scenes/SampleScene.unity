@@ -866,20 +866,20 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.36900645
       value: 0.73584056
-      inSlope: -1.3352923
-      outSlope: -1.3352923
+      inSlope: -1.2027638
+      outSlope: -1.2027638
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.10793195
+      inWeight: 0.08409051
       outWeight: 0.031580247
     - serializedVersion: 3
       time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
+      value: 0.2
+      inSlope: -0.22437306
+      outSlope: -0.22437306
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.05809406
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -978,25 +978,43 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
-      inSlope: -0.065730266
-      outSlope: -0.065730266
+      value: 0
+      inSlope: 0.5025316
+      outSlope: 0.5025316
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.035881434
+      outWeight: 0.39365786
     - serializedVersion: 3
-      time: 0.105862826
-      value: 0.61876076
-      inSlope: -0.74176013
-      outSlope: -0.74176013
+      time: 0.15
+      value: 0.7
+      inSlope: 0.03744032
+      outSlope: 0.03744032
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.3408743
-      outWeight: 0.040342107
+      inWeight: 0.18106242
+      outWeight: 0.06549348
+    - serializedVersion: 3
+      time: 0.25
+      value: 1
+      inSlope: 0.009152056
+      outSlope: 0.009152056
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.21352349
+      outWeight: 0.121700756
+    - serializedVersion: 3
+      time: 0.6
+      value: 1
+      inSlope: -0.009043073
+      outSlope: -0.009043073
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.12316743
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.1
+      value: 0.05
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1006,7 +1024,23 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  MaxMotorTorque: 16000
+  engineMaxTorque: 1000
+  engineTorque: 0
+  engineRpm: 0
+  engineMinRpm: 800
+  engineMaxRpm: 7000
+  gears:
+  - 3.77
+  - 2.6
+  - 1.6
+  - 1
+  - 0.7
+  finalDriveRatio: 3.7
+  selectedGear: 3.77
+  selectedGearIndex: 0
+  rearGear: -3.7
+  upShiftEngineRpm: 6400
+  downShiftEngineRpm: 3000
   maxSpeed: 320
   linearVelocity: 0
   ThrottleControl: 0
