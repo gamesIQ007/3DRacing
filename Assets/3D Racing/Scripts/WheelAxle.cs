@@ -160,6 +160,18 @@ namespace Racing
             return leftWheelCollider.radius;
         }
 
+        /// <summary>
+        /// Настройка подшагов симуляции коллайдера
+        /// </summary>
+        /// <param name="speedThreshold">Пограничная скорость</param>
+        /// <param name="speedBelowThreshold">Количество подшагов симуляции скорости ниже пограничной</param>
+        /// <param name="speedAboveThreshold">Количество подшагов симуляции скорости выше пограничной</param>
+        public void ConfigureVehicleSubsteps(float speedThreshold, int speedBelowThreshold, int speedAboveThreshold)
+        {
+            leftWheelCollider.ConfigureVehicleSubsteps(speedThreshold, speedBelowThreshold, speedAboveThreshold);
+            rightWheelCollider.ConfigureVehicleSubsteps(speedThreshold, speedBelowThreshold, speedAboveThreshold);
+        }
+
         #endregion
 
         #region Private

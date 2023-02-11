@@ -72,6 +72,11 @@ namespace Racing
             {
                 rigidbody.centerOfMass = centerOfMass.localPosition;
             }
+
+            for (int i = 0; i < wheelAxles.Length; i++)
+            {
+                wheelAxles[i].ConfigureVehicleSubsteps(50, 50, 50);
+            }
         }
 
         private void FixedUpdate()

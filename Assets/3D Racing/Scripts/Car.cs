@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Racing
 {
@@ -9,6 +10,10 @@ namespace Racing
     /// </summary>
     public class Car : MonoBehaviour
     {
+        /// <summary>
+        /// Событие изменения передачи
+        /// </summary>
+        public event UnityAction<string> GearChanged;
 
         /// <summary>
         /// Максимальный угол поворота
@@ -96,6 +101,8 @@ namespace Racing
         public float WheelSpeed => chassis.GetWheelSpeed();
 
         public int MaxSpeed => maxSpeed;
+        public float EngineRpm => engineRpm;
+        public float EngineMaxRpm => engineMaxRpm;
 
         //DEBUG
 
@@ -178,6 +185,8 @@ namespace Racing
         public void ShiftToReverseGear()
         {
             selectedGear = rearGear;
+
+            GearChanged?.Invoke(GetSelectedGearName());
         }
 
         /// <summary>
@@ -186,6 +195,8 @@ namespace Racing
         public void ShiftToFirstGear()
         {
             ShiftGear(0);
+
+            GearChanged?.Invoke(GetSelectedGearName());
         }
 
         /// <summary>
@@ -194,6 +205,8 @@ namespace Racing
         public void ShiftToNeutral()
         {
             selectedGear = 0;
+
+            GearChanged?.Invoke(GetSelectedGearName());
         }
 
         /// <summary>
@@ -205,6 +218,8 @@ namespace Racing
             gearIndex = Mathf.Clamp(gearIndex, 0, gears.Length - 1);
             selectedGear = gears[gearIndex];
             selectedGearIndex = gearIndex;
+
+            GearChanged?.Invoke(GetSelectedGearName());
         }
 
         /// <summary>
@@ -223,6 +238,19 @@ namespace Racing
             {
                 DownGear();
             }
+        }
+
+        /// <summary>
+        /// Возвращает выбранную передачу
+        /// </summary>
+        /// <returns>Выбранная передача</returns>
+        public string GetSelectedGearName()
+        {
+            if (selectedGear == rearGear) return "R";
+
+            if (selectedGear == 0) return "N";
+
+            return (selectedGearIndex + 1).ToString();
         }
 
         #endregion
