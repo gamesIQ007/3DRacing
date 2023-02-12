@@ -96,6 +96,11 @@ namespace Racing
         public float LinearVelocity => chassis.LinearVelocity;
 
         /// <summary>
+        /// Нормализованная линейная скорость
+        /// </summary>
+        public float NormalizedLinearVelocity => chassis.LinearVelocity / maxSpeed;
+
+        /// <summary>
         /// Скорость колеса
         /// </summary>
         public float WheelSpeed => chassis.GetWheelSpeed();
