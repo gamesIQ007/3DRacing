@@ -61,7 +61,7 @@ namespace Racing
 
                 if (wheels[i].isGrounded)
                 {
-                    if (wheelHit.forwardSlip > forwardSlipLimit || wheelHit.sidewaysSlip > sidewaySlipLimit)
+                    if (Mathf.Abs(wheelHit.forwardSlip) > forwardSlipLimit || Mathf.Abs(wheelHit.sidewaysSlip) > sidewaySlipLimit)
                     {
                         if (skidTrail[i] == null)
                         {
