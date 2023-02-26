@@ -7,12 +7,13 @@ namespace Racing
     /// <summary>
     /// Звук ветра при движении
     /// </summary>
-    public class WindSound : MonoBehaviour
+    public class WindSound : MonoBehaviour, IDependency<Car>
     {
         /// <summary>
         /// Автомобиль
         /// </summary>
-        [SerializeField] private Car car;
+        private Car car;
+        public void Construct(Car obj) => car = obj;
 
         /// <summary>
         /// Минимальная нормализованная скорость для появления звука

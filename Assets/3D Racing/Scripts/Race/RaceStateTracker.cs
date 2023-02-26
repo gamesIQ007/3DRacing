@@ -29,7 +29,7 @@ namespace Racing
     /// <summary>
     /// Отслеживание состояния гонки
     /// </summary>
-    public class RaceStateTracker : MonoBehaviour
+    public class RaceStateTracker : MonoBehaviour, IDependency<TrackpointCircuit>
     {
         /// <summary>
         /// Событие подготовки ко старту
@@ -55,15 +55,19 @@ namespace Racing
         /// <summary>
         /// Цепочка контрольных точек
         /// </summary>
-        [SerializeField] private TrackpointCircuit trackpointCircuit;
+        private TrackpointCircuit trackpointCircuit;
+        public void Construct(TrackpointCircuit obj) => trackpointCircuit = obj;
+
         /// <summary>
         /// Количество кругов в заезде
         /// </summary>
         [SerializeField] private int lapsToComplete;
+
         /// <summary>
         /// Таймер обратного отсчёта
         /// </summary>
         [SerializeField] private Timer countdownTimer;
+        public Timer CoundownTimer => countdownTimer;
 
         /// <summary>
         /// Состояние гонки

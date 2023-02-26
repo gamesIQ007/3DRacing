@@ -23,12 +23,13 @@ namespace Racing
     /// <summary>
     /// Индикатор количества оборотов двигателя
     /// </summary>
-    public class UIEngineRpm : MonoBehaviour
+    public class UIEngineRpm : MonoBehaviour, IDependency<Car>
     {
         /// <summary>
         /// Автомобиль
         /// </summary>
-        [SerializeField] private Car car;
+        private Car car;
+        public void Construct(Car obj) => car = obj;
 
         /// <summary>
         /// Избражение-индикатор оборотов

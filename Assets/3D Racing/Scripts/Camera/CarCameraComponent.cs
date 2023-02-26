@@ -7,12 +7,14 @@ namespace Racing
     /// <summary>
     /// Компоненты камеры
     /// </summary>
-    public abstract class CarCameraComponent : MonoBehaviour
+    public abstract class CarCameraComponent : MonoBehaviour, IDependency<Car>
     {
         /// <summary>
         /// Автомобиль
         /// </summary>
         protected Car car;
+        public void Construct(Car obj) => car = obj;
+
         /// <summary>
         /// Камера
         /// </summary>

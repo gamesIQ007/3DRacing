@@ -7,12 +7,13 @@ namespace Racing
     /// <summary>
     /// Звуки двигателя
     /// </summary>
-    public class EngineSound : MonoBehaviour
+    public class EngineSound : MonoBehaviour, IDependency<Car>
     {
         /// <summary>
         /// Автомобиль
         /// </summary>
-        [SerializeField] private Car car;
+        private Car car;
+        public void Construct(Car obj) => car = obj;
 
         /// <summary>
         /// Модификатор высоты звука

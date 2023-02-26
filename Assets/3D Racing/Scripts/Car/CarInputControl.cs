@@ -6,12 +6,13 @@ namespace Racing
     /// <summary>
     /// Управление автомобилем
     /// </summary>
-    public class CarInputControl : MonoBehaviour
+    public class CarInputControl : MonoBehaviour, IDependency<Car>
     {
         /// <summary>
         /// Автомобиль
         /// </summary>
-        [SerializeField] private Car car;
+        private Car car;
+        public void Construct(Car obj) => car = obj;
 
         /// <summary>
         /// Кривая торможения

@@ -6,12 +6,13 @@ namespace Racing
     /// <summary>
     /// Индикатор скорости автомобиля
     /// </summary>
-    public class UISpeedIndicator : MonoBehaviour
+    public class UISpeedIndicator : MonoBehaviour, IDependency<Car>
     {
         /// <summary>
         /// Автомобиль
         /// </summary>
-        [SerializeField] private Car car;
+        private Car car;
+        public void Construct(Car obj) => car = obj;
 
         /// <summary>
         /// Текст скорости

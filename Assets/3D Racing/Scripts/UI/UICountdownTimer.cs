@@ -6,21 +6,18 @@ namespace Racing
     /// <summary>
     /// Обратный отсчёт на экране
     /// </summary>
-    public class UICountdownTimer : MonoBehaviour
+    public class UICountdownTimer : MonoBehaviour, IDependency<RaceStateTracker>
     {
         /// <summary>
         /// Текст
         /// </summary>
         [SerializeField] private Text text;
-        /// <summary>
-        /// Таймер
-        /// </summary>
-        [SerializeField] private Timer countdownTimer;
 
         /// <summary>
         /// Трекер состояния гонки
         /// </summary>
-        [SerializeField] private RaceStateTracker raceStateTracker;
+        private RaceStateTracker raceStateTracker;
+        public void Construct(RaceStateTracker obj) => raceStateTracker = obj;
 
         private void Start()
         {
@@ -38,7 +35,7 @@ namespace Racing
 
         private void Update()
         {
-            text.text = countdownTimer.Value.ToString("F0");
+            text.text = raceStateTracker.CoundownTimer.Value.ToString("F0");
 
             if (text.text == "0")
             {

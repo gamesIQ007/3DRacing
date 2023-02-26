@@ -5,16 +5,19 @@ namespace Racing
     /// <summary>
     /// Управление управлением в гонке
     /// </summary>
-    public class RaceInputController : MonoBehaviour
+    public class RaceInputController : MonoBehaviour, IDependency<CarInputControl>, IDependency<RaceStateTracker>
     {
         /// <summary>
         /// Управление автомобилем
         /// </summary>
-        [SerializeField] private CarInputControl carControl;
+        private CarInputControl carControl;
+        public void Construct(CarInputControl obj) => carControl = obj;
+
         /// <summary>
         /// Трекер состояния гонки
         /// </summary>
-        [SerializeField] private RaceStateTracker raceStateTracker;
+        private RaceStateTracker raceStateTracker;
+        public void Construct(RaceStateTracker obj) => raceStateTracker = obj;
 
         private void Start()
         {

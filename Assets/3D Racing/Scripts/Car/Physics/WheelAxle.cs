@@ -72,7 +72,13 @@ namespace Racing
         private WheelHit leftWheelHit;
         private WheelHit rightWheelHit;
 
+        /// <summary>
+        /// Ось двигающая
+        /// </summary>
         public bool IsMotor => isMotor;
+        /// <summary>
+        /// Ось поворачивающая
+        /// </summary>
         public bool IsSteer => isSteer;
 
         /// <summary>
