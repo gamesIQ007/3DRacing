@@ -114,6 +114,20 @@ namespace Racing
             }
         }
 
+        /// <summary>
+        /// Остановка
+        /// </summary>
+        public void Stop()
+        {
+            moveInputVector = new Vector2(0, 0);
+            verticalAxis = 0;
+            horizontalAxis = 0;
+
+            car.ThrottleControl = 0;
+            car.SteerControl = 0;
+            car.BrakeControl = 1;
+        }
+
         public void OnMove(InputValue input)
         {
             moveInputVector = input.Get<Vector2>();

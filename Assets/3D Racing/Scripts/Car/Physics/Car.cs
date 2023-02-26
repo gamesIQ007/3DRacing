@@ -133,6 +133,8 @@ namespace Racing
         /// </summary>
         private CarChassis chassis;
 
+        public Rigidbody Rigidbody => chassis == null ? GetComponent<CarChassis>().Rigidbody : chassis.Rigidbody;
+
         private void Start()
         {
             chassis = GetComponent<CarChassis>();

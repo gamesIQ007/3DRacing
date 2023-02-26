@@ -5,17 +5,8 @@ namespace Racing
     /// <summary>
     /// Следование камеры за машиной
     /// </summary>
-    public class CameraFollow : MonoBehaviour
+    public class CarCameraFollow : CarCameraComponent
     {
-        /// <summary>
-        /// Цель следования
-        /// </summary>
-        [SerializeField] private Transform target;
-        /// <summary>
-        /// Тело, за которым следуем
-        /// </summary>
-        [SerializeField] private new Rigidbody rigidbody;
-        
         [Header("Offset")]
         /// <summary>
         /// Высота обзора
@@ -44,6 +35,15 @@ namespace Racing
         /// </summary>
         [SerializeField] private float speedThreshold;
 
+        /// <summary>
+        /// Цель следования
+        /// </summary>
+        private Transform target;
+        /// <summary>
+        /// Тело, за которым следуем
+        /// </summary>
+        private new Rigidbody rigidbody;
+
         private void FixedUpdate()
         {
             // Скорость
@@ -66,6 +66,14 @@ namespace Racing
             transform.position = new Vector3(transform.position.x, currentHeight, transform.position.z);
 
             transform.LookAt(target.position + new Vector3(0, viewHeight, 0));
+        }
+
+        public override void SetProperties(Car car, Camera camera)
+        {
+            base.SetProperties(car, camera);
+
+            target = car.transform;
+            rigidbody = car.Rigidbody;
         }
     }
 }

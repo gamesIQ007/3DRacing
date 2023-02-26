@@ -5,17 +5,8 @@ namespace Racing
     /// <summary>
     /// Коррекция угла обзора
     /// </summary>
-    public class CameraFovCorrector : MonoBehaviour
+    public class CarCameraFovCorrector : CarCameraComponent
     {
-        /// <summary>
-        /// Автомобиль
-        /// </summary>
-        [SerializeField] private Car car;
-        /// <summary>
-        /// Камера
-        /// </summary>
-        [SerializeField] private new Camera camera;
-
         /// <summary>
         /// Минимальный угол обзора
         /// </summary>

@@ -1,5 +1,5 @@
 {
-    "name": "MyControls",
+    "name": "Controls",
     "maps": [
         {
             "name": "Car",
@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "RaceStart",
+                    "type": "Button",
+                    "id": "983343e8-0ae0-440d-a326-24bab2c67f74",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -88,6 +97,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Break",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "26fa892e-8fe2-467f-9cf2-0c6b8692a48c",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RaceStart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

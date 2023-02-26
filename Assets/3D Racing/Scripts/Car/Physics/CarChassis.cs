@@ -25,7 +25,7 @@ namespace Racing
         [SerializeField] private Transform centerOfMass;
 
         /// <summary>
-        /// Угловое сопротивление.
+        /// Угловое сопротивление
         /// </summary>
         [Header("Angular Drag")]
         [SerializeField] private float angularDragMin;
@@ -46,6 +46,7 @@ namespace Racing
         public float LinearVelocity => rigidbody.velocity.magnitude * 3.6f;
 
         private new Rigidbody rigidbody;
+        public Rigidbody Rigidbody => rigidbody == null ? GetComponent<Rigidbody>() : rigidbody;
 
         //DEBUG
 

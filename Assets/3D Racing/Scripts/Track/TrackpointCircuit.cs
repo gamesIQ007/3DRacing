@@ -37,6 +37,7 @@ namespace Racing
         /// Тип трассы
         /// </summary>
         [SerializeField] private TrackType type;
+        public TrackType Type => type;
 
         /// <summary>
         /// Контрольные точки

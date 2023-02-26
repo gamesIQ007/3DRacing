@@ -5,13 +5,8 @@ namespace Racing
     /// <summary>
     /// Тряска камеры
     /// </summary>
-    public class CameraShaker : MonoBehaviour
+    public class CarCameraShaker : CarCameraComponent
     {
-        /// <summary>
-        /// Автомобиль
-        /// </summary>
-        [SerializeField] private Car car;
-
         /// <summary>
         /// Нормализованная скорость, выше которой будет тряска
         /// </summary>
