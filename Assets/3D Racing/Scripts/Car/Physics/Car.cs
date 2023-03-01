@@ -261,5 +261,34 @@ namespace Racing
         }
 
         #endregion
+
+        /// <summary>
+        /// Сброс автомобиля
+        /// </summary>
+        private void Reset()
+        {
+            chassis.Reset();
+
+            chassis.MotorTorque = 0;
+            chassis.BrakeTorque = 0;
+            chassis.SteerAngle = 0;
+
+            ThrottleControl = 0;
+            BrakeControl = 0;
+            SteerControl = 0;
+        }
+
+        /// <summary>
+        /// Респавн
+        /// </summary>
+        /// <param name="position">Позиция</param>
+        /// <param name="rotation">Поворот</param>
+        public void Respawn(Vector3 position, Quaternion rotation)
+        {
+            Reset();
+
+            transform.position = position;
+            transform.rotation = rotation;
+        }
     }
 }

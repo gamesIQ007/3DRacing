@@ -35,6 +35,14 @@ namespace Racing
         /// Контроллер камеры
         /// </summary>
         [SerializeField] private CarCameraController carCameraController;
+        /// <summary>
+        /// Замер времени заезда
+        /// </summary>
+        [SerializeField] private RaceTimeTracker raceTimeTracker;
+        /// <summary>
+        /// Итоговое время заезда
+        /// </summary>
+        [SerializeField] private RaceResultTime raceResultTime;
 
         private void Awake()
         {
@@ -56,6 +64,8 @@ namespace Racing
             if (mono is IDependency<CarInputControl>) (mono as IDependency<CarInputControl>).Construct(carInputControl);
             if (mono is IDependency<Car>) (mono as IDependency<Car>).Construct(car);
             if (mono is IDependency<CarCameraController>) (mono as IDependency<CarCameraController>).Construct(carCameraController);
+            if (mono is IDependency<RaceTimeTracker>) (mono as IDependency<RaceTimeTracker>).Construct(raceTimeTracker);
+            if (mono is IDependency<RaceResultTime>) (mono as IDependency<RaceResultTime>).Construct(raceResultTime);
         }
     }
 }

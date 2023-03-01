@@ -154,5 +154,14 @@ namespace Racing
             float downForce = Mathf.Clamp(downForceFactor * LinearVelocity, downForceMin, downForceMax);
             rigidbody.AddForce(-transform.up * downForce);
         }
+
+        /// <summary>
+        /// Сброс шасси
+        /// </summary>
+        public void Reset()
+        {
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.angularVelocity = Vector3.zero;
+        }
     }
 }

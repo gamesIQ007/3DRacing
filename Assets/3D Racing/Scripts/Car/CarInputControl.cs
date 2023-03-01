@@ -120,9 +120,7 @@ namespace Racing
         /// </summary>
         public void Stop()
         {
-            moveInputVector = new Vector2(0, 0);
-            verticalAxis = 0;
-            horizontalAxis = 0;
+            Reset();
 
             car.ThrottleControl = 0;
             car.SteerControl = 0;
@@ -139,6 +137,20 @@ namespace Racing
         public void OnBreak(InputValue input)
         {
             handbrakeAxis = input.Get<float>();
+        }
+
+        /// <summary>
+        /// Сброс
+        /// </summary>
+        public void Reset()
+        {
+            moveInputVector = new Vector2(0, 0);
+            verticalAxis = 0;
+            horizontalAxis = 0;
+
+            car.ThrottleControl = 0;
+            car.SteerControl = 0;
+            car.BrakeControl = 0;
         }
     }
 }
