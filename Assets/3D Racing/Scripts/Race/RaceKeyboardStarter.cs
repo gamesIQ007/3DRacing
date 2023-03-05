@@ -1,14 +1,14 @@
-using UnityEngine;
+п»їusing UnityEngine;
 
 namespace Racing
 {
     /// <summary>
-    /// Запуск гонки с контроллера
+    /// Р—Р°РїСѓСЃРє РіРѕРЅРєРё СЃ РєРѕРЅС‚СЂРѕР»Р»РµСЂР°
     /// </summary>
     public class RaceKeyboardStarter : MonoBehaviour, IDependency<RaceStateTracker>
     {
         /// <summary>
-        /// Трекер состояния гонки
+        /// РўСЂРµРєРµСЂ СЃРѕСЃС‚РѕСЏРЅРёСЏ РіРѕРЅРєРё
         /// </summary>
         private RaceStateTracker raceStateTracker;
         public void Construct(RaceStateTracker obj) => raceStateTracker = obj;

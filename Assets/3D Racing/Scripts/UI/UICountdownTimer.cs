@@ -1,20 +1,20 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.UI;
 
 namespace Racing
 {
     /// <summary>
-    /// Обратный отсчёт на экране
+    /// РћР±СЂР°С‚РЅС‹Р№ РѕС‚СЃС‡С‘С‚ РЅР° СЌРєСЂР°РЅРµ
     /// </summary>
     public class UICountdownTimer : MonoBehaviour, IDependency<RaceStateTracker>
     {
         /// <summary>
-        /// Текст
+        /// РўРµРєСЃС‚
         /// </summary>
         [SerializeField] private Text text;
 
         /// <summary>
-        /// Трекер состояния гонки
+        /// РўСЂРµРєРµСЂ СЃРѕСЃС‚РѕСЏРЅРёСЏ РіРѕРЅРєРё
         /// </summary>
         private RaceStateTracker raceStateTracker;
         public void Construct(RaceStateTracker obj) => raceStateTracker = obj;

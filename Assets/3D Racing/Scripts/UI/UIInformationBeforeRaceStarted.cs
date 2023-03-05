@@ -1,21 +1,21 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.UI;
 
 namespace Racing
 {
     /// <summary>
-    /// Вывод информации перед началом гонки
+    /// Р’С‹РІРѕРґ РёРЅС„РѕСЂРјР°С†РёРё РїРµСЂРµРґ РЅР°С‡Р°Р»РѕРј РіРѕРЅРєРё
     /// </summary>
     public class UIInformationBeforeRaceStarted : MonoBehaviour, IDependency<RaceStateTracker>
     {
         /// <summary>
-        /// Трекер состояния гонки
+        /// РўСЂРµРєРµСЂ СЃРѕСЃС‚РѕСЏРЅРёСЏ РіРѕРЅРєРё
         /// </summary>
         private RaceStateTracker raceStateTracker;
         public void Construct(RaceStateTracker obj) => raceStateTracker = obj;
 
         /// <summary>
-        /// Текст
+        /// РўРµРєСЃС‚
         /// </summary>
         [SerializeField] private Text info;
 

@@ -1,27 +1,27 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.UI;
 
 namespace Racing
 {
     /// <summary>
-    /// Отображение времени заезда
+    /// РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РІСЂРµРјРµРЅРё Р·Р°РµР·РґР°
     /// </summary>
     public class UITrackTime : MonoBehaviour, IDependency<RaceStateTracker>, IDependency<RaceTimeTracker>
     {
         /// <summary>
-        /// Трекер состояния гонки
+        /// РўСЂРµРєРµСЂ СЃРѕСЃС‚РѕСЏРЅРёСЏ РіРѕРЅРєРё
         /// </summary>
         private RaceStateTracker raceStateTracker;
         public void Construct(RaceStateTracker obj) => raceStateTracker = obj;
 
         /// <summary>
-        /// Замер времени заезда
+        /// Р—Р°РјРµСЂ РІСЂРµРјРµРЅРё Р·Р°РµР·РґР°
         /// </summary>
         private RaceTimeTracker timeTracker;
         public void Construct(RaceTimeTracker obj) => timeTracker = obj;
 
         /// <summary>
-        /// Текст
+        /// РўРµРєСЃС‚
         /// </summary>
         [SerializeField] private Text text;
 

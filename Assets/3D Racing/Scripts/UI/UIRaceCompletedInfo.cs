@@ -1,45 +1,45 @@
-using UnityEngine;
+п»їusing UnityEngine;
 using UnityEngine.UI;
 
 namespace Racing
 {
     /// <summary>
-    /// Информация с итогами заезда
+    /// РРЅС„РѕСЂРјР°С†РёСЏ СЃ РёС‚РѕРіР°РјРё Р·Р°РµР·РґР°
     /// </summary>
     public class UIRaceCompletedInfo : MonoBehaviour, IDependency<RaceStateTracker>, IDependency<RaceResultTime>, IDependency<RaceTimeTracker>
     {
         /// <summary>
-        /// Панель информации
+        /// РџР°РЅРµР»СЊ РёРЅС„РѕСЂРјР°С†РёРё
         /// </summary>
         [SerializeField] private GameObject panelInfo;
 
         /// <summary>
-        /// Текст о рекорде
+        /// РўРµРєСЃС‚ Рѕ СЂРµРєРѕСЂРґРµ
         /// </summary>
         [SerializeField] private Text newRecordText;
         /// <summary>
-        /// Текст текущего времени заезда
+        /// РўРµРєСЃС‚ С‚РµРєСѓС‰РµРіРѕ РІСЂРµРјРµРЅРё Р·Р°РµР·РґР°
         /// </summary>
         [SerializeField] private Text currentTimeText;
         /// <summary>
-        /// Текст лучшего времени заезда
+        /// РўРµРєСЃС‚ Р»СѓС‡С€РµРіРѕ РІСЂРµРјРµРЅРё Р·Р°РµР·РґР°
         /// </summary>
         [SerializeField] private Text playerRecordText;
 
         /// <summary>
-        /// Трекер состояния гонки
+        /// РўСЂРµРєРµСЂ СЃРѕСЃС‚РѕСЏРЅРёСЏ РіРѕРЅРєРё
         /// </summary>
         private RaceStateTracker raceStateTracker;
         public void Construct(RaceStateTracker obj) => raceStateTracker = obj;
 
         /// <summary>
-        /// Замер времени заезда
+        /// Р—Р°РјРµСЂ РІСЂРµРјРµРЅРё Р·Р°РµР·РґР°
         /// </summary>
         private RaceResultTime raceResultTime;
         public void Construct(RaceResultTime obj) => raceResultTime = obj;
 
         /// <summary>
-        /// Замер времени заезда
+        /// Р—Р°РјРµСЂ РІСЂРµРјРµРЅРё Р·Р°РµР·РґР°
         /// </summary>
         private RaceTimeTracker raceTimeTracker;
         public void Construct(RaceTimeTracker obj) => raceTimeTracker = obj;
