@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/3D Racing/Scenes/Test.unity
-    guid: 124338b4bd037b643aa8db0212c3941b
+    path: Assets/3D Racing/Scenes/main_menu.unity
+    guid: 59b5d59c8004ffd4cbb4d926937bbf60
   - enabled: 1
-    path: Assets/3D Racing/Scenes/SampleScene.unity
+    path: Assets/3D Racing/Scenes/Races/test_race.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
