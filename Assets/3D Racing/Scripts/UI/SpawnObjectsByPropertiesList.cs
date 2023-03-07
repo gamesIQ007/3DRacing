@@ -3,28 +3,28 @@
 namespace Racing
 {
     /// <summary>
-    /// Кнопка спавна кнопок гонок
+    /// Кнопка спавна объектов со свойствами
     /// </summary>
-    public class UIRaceButtonSpawner : MonoBehaviour
+    public class SpawnObjectsByPropertiesList : MonoBehaviour
     {
         /// <summary>
         /// Родитель
         /// </summary>
         [SerializeField] private Transform parent;
         /// <summary>
-        /// Префаб кнопки гонки
+        /// Префаб
         /// </summary>
-        [SerializeField] private UIRaceButton prefab;
+        [SerializeField] private GameObject prefab;
         /// <summary>
-        /// Массив свойств заездов
+        /// Массив свойств
         /// </summary>
-        [SerializeField] private RaceInfo[] properties;
+        [SerializeField] private ScriptableObject[] properties;
 
         /// <summary>
         /// Спавн кнопок
         /// </summary>
-        [ContextMenu(nameof(Spawn))]
-        public void Spawn()
+        [ContextMenu(nameof(SpawnInEditMode))]
+        public void SpawnInEditMode()
         {
             if (Application.isPlaying) return;
 
@@ -42,8 +42,9 @@ namespace Racing
 
             for (int i = 0; i < properties.Length; i++)
             {
-                UIRaceButton button = Instantiate(prefab, parent);
-                button.ApplyProperty(properties[i]);
+                GameObject gameObject = Instantiate(prefab, parent);
+                IScriptableObjectProperty scriptableObjectProperty = gameObject.GetComponent<IScriptableObjectProperty>();
+                scriptableObjectProperty.ApplyProperty(properties[i]);
             }
         }
     }

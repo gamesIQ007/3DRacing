@@ -8,7 +8,7 @@ namespace Racing
     /// <summary>
     /// Отображение информации о гонке
     /// </summary>
-    public class UIRaceButton : UISelectableButton
+    public class UIRaceButton : UISelectableButton, IScriptableObjectProperty
     {
         /// <summary>
         /// Информация о гонке
@@ -42,11 +42,12 @@ namespace Racing
         /// Применить свойства
         /// </summary>
         /// <param name="property">Свойства</param>
-        public void ApplyProperty(RaceInfo property)
+        public void ApplyProperty(ScriptableObject property)
         {
             if (property == null) return;
+            if (property is RaceInfo == false) return;
 
-            raceInfo = property;
+            raceInfo = property as RaceInfo;
 
             icon.sprite = raceInfo.Icon;
             title.text = raceInfo.Title;
