@@ -78,19 +78,19 @@ namespace Racing
             {
                 playerRecordTime = raceTimeTracker.CurrentTime;
 
-                ResultUpdated?.Invoke();
-
                 Save();
             }
 
             currentTime = raceTimeTracker.CurrentTime;
+
+            ResultUpdated?.Invoke();
         }
 
         /// <summary>
         /// Получить абсолютный рекорд заезда
         /// </summary>
         /// <returns>Время заезда</returns>
-        private float GetAbsoluteRecord()
+        public float GetAbsoluteRecord()
         {
             if (playerRecordTime < goldTime && playerRecordTime != 0)
             {

@@ -72,7 +72,7 @@ namespace Racing
 
         public override void Load()
         {
-            currentResolutionIndex = PlayerPrefs.GetInt(title, 0);
+            currentResolutionIndex = PlayerPrefs.GetInt(title, availableResolutions.Length - 1);
         }
     }
 }
