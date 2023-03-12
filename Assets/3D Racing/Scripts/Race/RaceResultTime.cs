@@ -10,11 +10,6 @@ namespace Racing
     public class RaceResultTime : MonoBehaviour, IDependency<RaceStateTracker>, IDependency<RaceTimeTracker>
     {
         /// <summary>
-        /// Пометка для сохранения
-        /// </summary>
-        public const string SaveMark = "_player_best_time";
-
-        /// <summary>
         /// Событие обновления результатов заезда
         /// </summary>
         public event UnityAction ResultUpdated;
@@ -107,7 +102,7 @@ namespace Racing
         /// </summary>
         private void Load()
         {
-            playerRecordTime = PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + SaveMark, 0);
+            playerRecordTime = RaceCompletion.Instance.GetRaceScore(SceneManager.GetActiveScene().name);
         }
 
         /// <summary>
@@ -115,7 +110,7 @@ namespace Racing
         /// </summary>
         private void Save()
         {
-            PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + SaveMark, playerRecordTime);
+            RaceCompletion.Instance.SaveRaceResult(playerRecordTime, playerRecordTime < goldTime);
         }
     }
 }

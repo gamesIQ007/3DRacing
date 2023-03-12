@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/3D Racing/Scenes/main_menu.unity
     guid: 59b5d59c8004ffd4cbb4d926937bbf60
   - enabled: 1
+    path: Assets/3D Racing/Scenes/Races/white_01.unity
+    guid: 06752b7c3dc53bb44a7211a200f3593e
+  - enabled: 1
+    path: Assets/3D Racing/Scenes/Races/white_02.unity
+    guid: 7114cb611186623439ea19596883a43e
+  - enabled: 1
+    path: Assets/3D Racing/Scenes/Races/green_01.unity
+    guid: 26e5f1320d8ab594e87eb2443817af19
+  - enabled: 1
     path: Assets/3D Racing/Scenes/Races/test_race.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

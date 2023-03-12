@@ -13,7 +13,8 @@ namespace Racing
         /// <summary>
         /// Возможно ли взаимодействовать?
         /// </summary>
-        [SerializeField] protected bool Interactable;
+        [SerializeField] protected bool interactable = true;
+        public bool Interactable => interactable;
 
         /// <summary>
         /// В фокусе ли?
@@ -38,7 +39,7 @@ namespace Racing
         /// </summary>
         public virtual void SetFocus()
         {
-            if (Interactable == false) return;
+            if (interactable == false) return;
 
             focus = true;
         }
@@ -48,31 +49,40 @@ namespace Racing
         /// </summary>
         public virtual void SetUnFocus()
         {
-            if (Interactable == false) return;
+            if (interactable == false) return;
 
             focus = false;
         }
 
         public virtual void OnPointerEnter(PointerEventData eventData)
         {
-            if (Interactable == false) return;
+            if (interactable == false) return;
 
             PointerEnter?.Invoke(this);
         }
 
         public virtual void OnPointerExit(PointerEventData eventData)
         {
-            if (Interactable == false) return;
+            if (interactable == false) return;
 
             PointerExit?.Invoke(this);
         }
 
         public virtual void OnPointerClick(PointerEventData eventData)
         {
-            if (Interactable == false) return;
-
+            if (interactable == false) return;
+            
             PointerClick?.Invoke(this);
             OnClick?.Invoke();
+        }
+
+        /// <summary>
+        /// Поставить возможность взаимодействия
+        /// </summary>
+        /// <param name="active">Активно?</param>
+        public virtual void SetInteractable(bool active)
+        {
+            interactable = active;
         }
     }
 }

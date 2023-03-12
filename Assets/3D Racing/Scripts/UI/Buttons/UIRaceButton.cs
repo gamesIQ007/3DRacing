@@ -14,6 +14,7 @@ namespace Racing
         /// Информация о гонке
         /// </summary>
         [SerializeField] private RaceInfo raceInfo;
+        public RaceInfo RaceInfo => raceInfo;
 
         /// <summary>
         /// Иконка
@@ -32,7 +33,8 @@ namespace Racing
         public override void OnPointerClick(PointerEventData eventData)
         {
             base.OnPointerClick(eventData);
-
+            
+            if (interactable == false) return;
             if (raceInfo == null) return;
 
             SceneManager.LoadScene(raceInfo.SceneName);

@@ -101,6 +101,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   selectImage: {fileID: 2342880071885409454}
+  blockImage: {fileID: 0}
   OnSelect:
     m_PersistentCalls:
       m_Calls: []

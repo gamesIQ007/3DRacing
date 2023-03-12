@@ -2270,6 +2270,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 8482101116388160271}
     m_Modifications:
     - target: {fileID: 294591402298487864, guid: 9294e8a55de4a43488ed9127872a3476, type: 3}
+      propertyPath: interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 294591402298487864, guid: 9294e8a55de4a43488ed9127872a3476, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2429,6 +2433,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 8482101116388160271}
     m_Modifications:
     - target: {fileID: 294591402298487864, guid: 9294e8a55de4a43488ed9127872a3476, type: 3}
+      propertyPath: interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 294591402298487864, guid: 9294e8a55de4a43488ed9127872a3476, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2583,6 +2591,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2388271499315915460}
     m_Modifications:
+    - target: {fileID: 294591402298487864, guid: 9294e8a55de4a43488ed9127872a3476, type: 3}
+      propertyPath: interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 294591402298487864, guid: 9294e8a55de4a43488ed9127872a3476, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2861,6 +2873,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2388271499315915460}
     m_Modifications:
     - target: {fileID: 294591402298487864, guid: 9294e8a55de4a43488ed9127872a3476, type: 3}
+      propertyPath: interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 294591402298487864, guid: 9294e8a55de4a43488ed9127872a3476, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -3015,6 +3031,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2388271499315915460}
     m_Modifications:
+    - target: {fileID: 294591402298487864, guid: 9294e8a55de4a43488ed9127872a3476, type: 3}
+      propertyPath: interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 294591402298487864, guid: 9294e8a55de4a43488ed9127872a3476, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
